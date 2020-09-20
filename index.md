@@ -144,7 +144,7 @@ text+="Requried intrest rate= "+intrst;
 for( i=1;i<=noOfDays;i++){
 intrstValue=totalValue*(intrst/100);
 totalValue=totalValue*(1 + intrst/100);
-text +="<br /> Day "+ i+": " +"tot- "+totalValue+ "    interest-"+intrstValue ;
+text +="<br /> Day "+ i+": " +"tot- "+totalValue+ "      interest-"+intrstValue ;
  
 document.getElementById("dataA").innerHTML= text;}
 
