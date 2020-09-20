@@ -110,10 +110,45 @@ function toogleDataSeries(e){
          
       </div>
  </div>
-<script type="text/javascript" src="java.js">
-</script>
+
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+<script type="text/javascript">
+var noOfDays=prompt("No of Days?","F");
+var iniInvst=prompt("Initial Investment");
+var intrst=prompt("DAily intrest rate","5");
+var finalValue=prompt("Final target Value","F")
+var i;
+
+if(iniInvst=="F"){
+iniInvst= finalValue/Math.pow((1 + intrst/100),noOfDays);
+
+}
+
+
+var totalValue=iniInvst;
+text="Initial INVESTMENT-"+iniInvst;
+if(noOfDays=="F"){
+var j= finalValue/iniInvst;
+noOfDays=Math.log(j)/Math.log(1+intrst/100);
+text+="Requried no of days= "+noOfDays;
+}
+
+if(intrst=="F"){
+var j=finalValue/iniInvst;
+intrst=Math.pow(j,1/noOfDays)*100-100;
+text+="Requried intrest rate= "+intrst;
+}
+
+for( i=1;i<=noOfDays;i++){
+intrstValue=totalValue*(intrst/100);
+totalValue=totalValue*(1 + intrst/100);
+text +="<br /> Day "+ i+": " +"tot- "+totalValue+ " interest-"+intrstValue ;
+ 
+document.getElementById("dataA").innerHTML= text;}
+
+
+</script>
 </body>
 </html>
