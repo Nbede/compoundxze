@@ -159,7 +159,7 @@ for( i=1;i<=noOfDays;i++){
 intrstValue=totalValue*(intrst/100);
 totalValue=totalValue*(1 + intrst/100);
 
-text2+= " <tr><td>"+i+"</td><td>"+totalValue+"</td><td>"+intrstValue +"</td></tr> ";
+text2+= "<tr><td>" +i+ "</td><td>"+totalValue+"</td><td>"+intrstValue +"</td></tr> ";
  
  }
 document.getElementById("dataB").innerHTML=text2;
