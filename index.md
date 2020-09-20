@@ -107,8 +107,14 @@ function toogleDataSeries(e){
 
   <input type="number" id="noOfDays" name="noOfDays"  size="10">
       <div id=dataA>
+        
          
       </div>
+      <div>
+ <table id=dataB style="width:100%;text-align:left;">
+        
+         </table>      
+</div>
  </div>
 
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
@@ -120,6 +126,8 @@ var iniInvst=prompt("Initial Investment");
 var intrst=prompt("DAily intrest rate","5");
 var finalValue=prompt("Final target Value","F")
 var i;
+var text1;
+var text2;
 
 if(iniInvst=="F"){
 iniInvst= finalValue/Math.pow((1 + intrst/100),noOfDays);
@@ -128,25 +136,33 @@ iniInvst= finalValue/Math.pow((1 + intrst/100),noOfDays);
 
 
 var totalValue=iniInvst;
-text="Initial INVESTMENT-"+iniInvst;
+text1="Initial INVESTMENT-"+iniInvst;
 if(noOfDays=="F"){
 var j= finalValue/iniInvst;
 noOfDays=Math.log(j)/Math.log(1+intrst/100);
-text+="Requried no of days= "+noOfDays;
+text1 +="Requried no of days= "+noOfDays;
 }
 
 if(intrst=="F"){
 var j=finalValue/iniInvst;
 intrst=Math.pow(j,1/noOfDays)*100-100;
-text+="Requried intrest rate= "+intrst;
+text1 +="Requried intrest rate= "+intrst;
+}
+if(finalValue=="F"){
+finalValue=iniInvst*Math.pow((1 + intrst/100),noOfDays);
 }
 
+text1 +=" Final Returns= " + finalValue;
+text2= "<tr><th>.</th><th>.</th><th>.</th></tr><tr><th>@DAY</th><th>Total</th><th>Interest Amt</th></tr>";
+document.getElementById("dataA").innerHTML= text1;
 for( i=1;i<=noOfDays;i++){
 intrstValue=totalValue*(intrst/100);
 totalValue=totalValue*(1 + intrst/100);
-text +="<br /> Day "+ i+": " +"tot- "+totalValue+ "-----interest-"+intrstValue ;
+
+text2+= " <tr><td>"+i+"</td><td>"+totalValue+"</td><td>"+intrstValue +"</td></tr> ";
  
-document.getElementById("dataA").innerHTML= text;}
+ }
+document.getElementById("dataB").innerHTML=text2;
 
 
 </script>
