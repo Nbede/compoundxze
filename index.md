@@ -1,37 +1,154 @@
-## Welcome to GitHub Pages
+<!DOCTYPE HTML>
+<html><head>
+<script>
+window.onload = function () {
 
-You can use the [editor on GitHub](https://github.com/Nandeesh-lab/Nandeesh-kumar-K-M/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+var options = {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Actual vs Projected"
+	},
+	axisX:{
+		valueFormatString: "DD MMM YYYY"
+	},
+	axisY: {
+		title: "total",
+		suffix: "K",
+		minimum: 30
+	},
+	toolTip:{
+		shared:true
+	},  
+	legend:{
+		cursor:"pointer",
+		verticalAlign: "bottom",
+		horizontalAlign: "left",
+		dockInsidePlotArea: true,
+		itemclick: toogleDataSeries
+	},
+	data: [{
+		type: "line",
+		showInLegend: true,
+		name: "Projected",
+		markerType: "square",
+		xValueFormatString: "DD MMM, YYYY",
+		color: "#F08080",
+		yValueFormatString: "#,##0K",
+		dataPoints: [
+			{ x: new Date(2020, 9, 1), y: 63 },
+			{ x: new Date(2020, 9, 2), y: 69 },
+			{ x: new Date(2020, 9, 3), y: 65 },
+			{ x: new Date(2020, 9, 4), y: 70 },
+			{ x: new Date(2020, 9, 5), y: 71 },
+			{ x: new Date(2020, 9, 6), y: 65 },
+			{ x: new Date(2020, 9, 7), y: 73 },
+			{ x: new Date(2020, 9, 8), y: 96 },
+			{ x: new Date(2020, 9, 9), y: 84 },
+			{ x: new Date(2020, 9, 10), y: 85 },
+			{ x: new Date(2020, 9, 11), y: 86 },
+			{ x: new Date(2020, 9, 12), y: 94 },
+			{ x: new Date(2020, 9, 13), y: 97 },
+			{ x: new Date(2020, 9, 14), y: 86 },
+			{ x: new Date(2020, 9, 15), y: 89 }
+		]
+	},
+	{
+		type: "line",
+		showInLegend: true,
+		name: "Actual",
+		lineDashType: "dash",
+		yValueFormatString: "#,##0K",
+		dataPoints: [
+			{ x: new Date(2020, 9, 1), y: 60 },
+			{ x: new Date(2020, 9, 2), y: 58 },
+			{ x: new Date(2020, 9, 3), y: 71 },
+			{ x: new Date(2020, 9, 4), y: 65 },
+			{ x: new Date(2020, 9, 5), y: 54 },
+			{ x: new Date(2020, 9, 6), y: 74 },
+			{ x: new Date(2020, 9, 7), y: 82 },
+			{ x: new Date(2020, 9, 8), y: 72 },
+			{ x: new Date(2020, 9, 9), y: 95 },
+			{ x: new Date(2020, 9, 10), y: 74 },
+			{ x: new Date(2020, 9, 11), y: 64 },
+			{ x: new Date(2020, 9, 12), y: 84 },
+			{ x: new Date(2020, 9, 13), y: 68 },
+			{ x: new Date(2020, 9, 14), y: 59 },
+			{ x: new Date(2020, 9, 15), y: 94 }
+		]
+	}]
+};
+$("#chartContainer").CanvasJSChart(options);
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+function toogleDataSeries(e){
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	} else{
+		e.dataSeries.visible = true;
+	}
+	e.chart.render();
+}
 
-### Markdown
+}
+</script>
+<link href="main.css" rel="stylesheet">
+</head>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+<body>
+ <div>
+  <label for="ini_invest">Initial Invest Amount</label>
 
-# Header 1
-## Header 2
-### Header 3
+  <input type="number" id="ini_invest" name="ini_invest"  size="10">
+  <label for="intrestRate">Daily Intrest Rate</label>
 
-- Bulleted
-- List
+  <input type="number" id="intrestRate" name="intrestRate"  size="10">
+  <label for="noOfDays">No of Days</label>
 
-1. Numbered
-2. List
+  <input type="number" id="noOfDays" name="noOfDays"  size="10">
+      <div id=dataA>
+         
+      </div>
+ </div>
 
-**Bold** and _Italic_ and `Code` text
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+<script type="text/javascript">
+var noOfDays=prompt("No of Days?","F");
+var iniInvst=prompt("Initial Investment");
+var intrst=prompt("DAily intrest rate","5");
+var finalValue=prompt("Final target Value","F")
+var i;
 
-[Link](url) and ![Image](src)
-```
+if(iniInvst=="F"){
+iniInvst= finalValue/Math.pow((1 + intrst/100),noOfDays);
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+}
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Nandeesh-lab/Nandeesh-kumar-K-M/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+var totalValue=iniInvst;
+text="Initial INVESTMENT-"+iniInvst;
+if(noOfDays=="F"){
+var j= finalValue/iniInvst;
+noOfDays=Math.log(j)/Math.log(1+intrst/100);
+text+="Requried no of days= "+noOfDays;
+}
 
-### Support or Contact
+if(intrst=="F"){
+var j=finalValue/iniInvst;
+intrst=Math.pow(j,1/noOfDays)*100-100;
+text+="Requried intrest rate= "+intrst;
+}
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+for( i=1;i<=noOfDays;i++){
+intrstValue=totalValue*(intrst/100);
+totalValue=totalValue*(1 + intrst/100);
+text +="<br /> Day "+ i+": " +"tot- "+totalValue+ " interest-"+intrstValue ;
+ 
+document.getElementById("dataA").innerHTML= text;}
+
+
+</script>
+</body>
+</html>
