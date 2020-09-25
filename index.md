@@ -151,7 +151,7 @@ text1 +="Requried intrest rate= "+intrst;
 if(finalValue=="F"){
 finalValue=iniInvst*Math.pow((1 + intrst/100),noOfDays);
 }
-
+i=Math.floor(i)+1;
 text1 +=" Final Returns= " + finalValue;
 text2= "<tr><th>.</th><th>.</th><th>.</th></tr><tr><th>@DAY</th><th>Total</th><th>Interest Amt</th></tr>";
 document.getElementById("dataA").innerHTML= text1;
