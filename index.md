@@ -150,12 +150,14 @@ text1 +="Requried intrest rate= "+intrst;
 }
 if(finalValue=="F"){
 finalValue=iniInvst*Math.pow((1 + intrst/100),noOfDays);
+
+}
+
 var cr=finalValue/10000000;
 var lac=(finalValue%10000000)/100000;
 var ths=(finalValue%10000000)%100000;
 cr=Math.floor(cr);
 lac=Math.floor(lac);
-}
 noOfDays=Math.floor(noOfDays)+1;
 text1 +=" Final Returns= " + cr + "cr " +lac +"lac "+ ths;
 text2= "<tr><th>.</th><th>.</th><th>.</th></tr><tr><th>@DAY</th><th>Total</th><th>Interest Amt</th></tr>";
